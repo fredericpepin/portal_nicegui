@@ -1,0 +1,236 @@
+:root {
+  --primary: #1976D2;
+  --drawer-bg: #FFFFFF;
+  --text-color: #424242;
+  --text-color-secondary: #757575;
+  --active-bg: #E3F2FD;
+  --hover-bg: #F5F5F5;
+  --border-color: #E0E0E0;
+}
+
+/* === Page Content === */
+.q-page-container {
+    padding-top: 120px !important; /* Add top padding to avoid content being hidden by the fixed header */
+}
+
+/* === Drawer === */
+.q-drawer {
+    border-right: 2px solid var(--border-color) !important;
+    box-shadow: 2px 0 4px rgba(0,0,0,0.1) !important;
+}
+.drawer .q-drawer {
+    background: var(--drawer-bg) !important;
+    padding: 0 !important;
+}
+.drawer__content {
+    gap: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+.nav-list {
+    gap: 0 !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* === Navigation Items === */
+.nav-group, .nav-link {
+    width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-sizing: border-box !important;
+    border: none !important;
+}
+
+/* Expansion group container */
+.nav-group {
+    width: 100% !important;
+    padding: 0 !important;
+    gap: 0 !important;
+}
+.nav-group .q-expansion-item {
+    width: 100% !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.nav-group .q-expansion-item__container {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.nav-group .q-expansion-item__content {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    border-top: none !important;
+}
+.nav-group .q-expansion-item__content > .nicegui-column,
+.nav-group .q-expansion-item__content > .nav-list {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Expansion headers */
+.nav-group .q-item {
+    padding: 0 !important;
+    color: var(--text-color);
+    font-weight: 500;
+    width: 100% !important;
+    min-height: 40px !important;
+    line-height: 40px !important;
+    position: relative;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+}
+.nav-group .q-item:hover {
+    background-color: var(--hover-bg) !important;
+}
+.nav-group .q-item--active {
+    background-color: var(--active-bg) !important;
+    color: var(--primary) !important;
+}
+.nav-group .q-item__section--main {
+    padding: 0 16px !important;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 32px; /* room for arrow */
+}
+.nav-group .q-item__section--side {
+    position: absolute !important;
+    right: 8px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    z-index: 10 !important;
+}
+
+/* Nested expansion indentation */
+.nav-group .q-expansion-item__content .nav-group .q-item__section--main {
+    padding-left: 32px !important;
+}
+
+/* === Links === */
+.nav-link {
+    display: flex !important;
+    align-items: center;
+    padding: 0 16px !important;
+    text-decoration: none !important;
+    color: var(--text-color) !important;
+    transition: background-color 0.2s ease-in-out;
+    width: 100% !important;
+    min-height: 40px !important;
+    line-height: 40px !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-sizing: border-box !important;
+}
+.nav-link:hover {
+    background-color: var(--hover-bg) !important;
+}
+.nav-link--active {
+    background-color: var(--active-bg) !important;
+    color: var(--primary) !important;
+    font-weight: 700 !important;
+}
+
+/* Nested links indent */
+.nav-group .q-expansion-item__content .nav-link {
+    padding-left: 48px !important;
+}
+.nav-group .q-expansion-item__content .nav-link--active {
+    background-color: var(--active-bg) !important;
+    color: var(--primary) !important;
+}
+/* Kill Quasar's built-in shadow layer inside the header */
+.q-header .q-layout__shadow { display: none !important; }
+
+/* Your header */
+.header {
+  position: fixed; inset: 0 0 auto 0; height: 70px;
+  color: #fff; display: flex; align-items: center; justify-content: space-between;
+  box-shadow: none;               /* we'll add our own */
+  z-index: 10;                    /* create a stacking context */
+}
+
+/* Background image + flat overlay behind everything */
+.header::before {
+  content: ''; position: absolute; inset: 0;
+  background: url('/static/images/maple_grove.jpg') center/cover no-repeat;
+  background-color: rgba(0, 60, 189, 0.753); background-blend-mode: overlay;
+  z-index: 0;
+}
+
+/* Soft shadow as a separate layer BELOW the logo/content */
+.header::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  box-shadow: 0 1.5px 3px rgba(0,0,0,.70);
+  z-index: 1; pointer-events: none;
+}
+
+/* Absolute centering that ignores the menu button */
+.header-center {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -25%); /* tweak vertically as you like */
+  width: 100%; display: flex; justify-content: center; align-items: center;
+  pointer-events: none; z-index: 2; /* above ::after shadow */
+}
+
+/* Logo sits above the shadow */
+.header-logo {
+  height: 100px; width: auto; position: relative; z-index: 2; pointer-events: auto;
+}
+
+/* Keep the menu button above the background */
+.header .q-btn { position: relative; z-index: 2; }
+
+/* Ensure page content clears the fixed header (and a bit of logo overlap) */
+.q-page-container { padding-top: 110px !important; }
+
+.header__title {
+    font-weight: 500 !important;
+}
+
+/* === Drawer Border Always Visible === */
+.q-layout__section--left,
+.q-layout .q-drawer--left,
+.q-drawer--left {
+    border-right: 2px solid var(--border-color) !important;
+    box-shadow: 2px 0 4px rgba(0,0,0,0.1) !important;
+}
+
+/* Kill separators */
+.drawer .q-separator {
+    display: none !important;
+}
+
+
+/* Remove the gap between expansion header and first child */
+.q-expansion-item__content {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+.q-expansion-item__content > .nicegui-column,
+.q-expansion-item__content > .nav-list {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+
+.q-expansion-item__content > .nicegui-column:first-child,
+.q-expansion-item__content > .nav-list:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.nav-group .q-expansion-item__content {
+    row-gap: 6px !important;
+    column-gap: 0 !important;
+}
