@@ -1,0 +1,82 @@
+# project specific
+.nicegui
+
+# === PYTHON ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.egg-info/
+.eggs/
+*.manifest
+*.spec
+*.log
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter and IPython
+.ipynb_checkpoints/
+*.ipynb*
+
+# Poetry / Pip build artifacts
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.cache/
+.tox/
+.coverage
+*.cover
+htmlcov/
+.mypy_cache/
+.dmypy.json
+.pyre/
+pip-wheel-metadata/
+
+# === C / C++ ===
+# CMake build files
+c/build/
+
+# Object and binary files
+*.o
+*.obj
+*.a
+*.so
+*.dll
+*.exe
+*.out
+*.log
+
+# === Sphinx / Docs ===
+docs/build/
+docs/_build/
+docs/source/_build/
+docs/source/.doctrees/
+docs/source/.sphinx/
+docs/source/generated/
+*.doctree
+*.rst*
+
+# === IDE / Editor ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# === TESTS ===
+tests/
+
+# === OS / Misc ===
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.tmp

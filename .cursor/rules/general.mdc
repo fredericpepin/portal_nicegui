@@ -1,0 +1,67 @@
+---
+description: General overview and context
+globs:
+alwaysApply: true
+---
+
+# Project Rules — NicePortal (NiceGUI)
+
+A NiceGUI Application for internal tools (reporting, exposing some Python backend functions
+to users (like process some files, automation pipelines, etc.)) for a middle size enterprise
+of ~40 users at first.
+
+## General
+
+- Framework: **NiceGUI + FastAPI**.
+- Language: **Python 3.12+**.
+- Style: **PEP 8**, type hints for all functions.
+- Use **pydantic** for config (`app/settings.py`) and data validation.
+- Keep imports **relative within `app/`** (e.g., `from ..layouts import default_layout`).
+- No business logic inside UI components; put it in `services/`.
+
+## Project structure
+
+- **Entry point**: `app/main.py` runs `ui.run()`.
+- **Layouts** → `app/layouts.py`.
+- **Auth/session** → `app/auth.py`.
+- **Navigation** → `app/nav.py`.
+- **Feature modules** live in `app/modules/<feature>/`:
+  - `views.py` = UI pages (must call `register()`).
+  - `service.py` = business/domain logic.
+  - `models.py` = Pydantic schemas.
+- Shared backend logic → `app/services/` (db, API clients, utilities).
+- **Static assets** (logos, JS/CSS, AG Grid, etc.) → `/static`.
+
+## NiceGUI conventions
+
+- All pages wrapped in `default_layout(active='/route')`.
+- Register every page via `nav.register(label, path, view, roles)`.
+- Protect all pages with `@require_login` except `/login`.
+- Use `app.storage.user` for per-user session state.
+- Role-based access: pass `roles=(...)` into `register()`.
+
+## UI guidelines
+
+- Prefer responsive layouts with Tailwind/Quasar classes (`gap-2`, `p-4`, `flex-wrap`).
+
+## FastAPI integration
+
+- Backend APIs go in `app/api.py` or `app/services/`.
+- Mount routers with `app.add_api_router(router)`.
+- UI should call service functions, not DB logic directly.
+
+## Cursor hints
+
+- When adding a **new feature**, create a new folder under `app/modules/<feature>/` unless otherwise specified with:
+  - `views.py` (UI pages)
+  - `service.py` (logic, optional)
+  - `models.py` (schemas, optional)
+- Always register new pages with `nav.register`.
+- If Cursor suggests mixing DB logic in UI, refactor into `services/`.
+
+## Technical Stack
+
+- Python/FastAPI for the backend
+- Vue/Quasar in the frontend
+- socket.io for communication between frontend and backend
+
